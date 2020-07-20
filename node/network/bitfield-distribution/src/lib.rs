@@ -143,8 +143,6 @@ impl BitfieldDistribution {
                                     relay_parent: hash,
                                     signed_availability,
                                 };
-                                // @todo are we subject to sending something multiple times?
-                                // @todo this also apply to ourself?
                                 relay_message(&mut ctx, &mut tracker, msg).await?;
                             }
                             BitfieldDistributionMessage::NetworkBridgeUpdate(event) => {
@@ -483,8 +481,40 @@ mod test {
         unimplemented!()
     }
 
+    macro_rules! msg_sequence {
+        ( $base:ident => $( $input:expr ),+ ) => {
+            use $base;
+            vec![ $( AllMessages::BitfieldDistribution($input) ),+ ]
+        };
+    }
+
+
+    macro_rules! spawn_distribution_with_peers {
+
+    }
+
     #[test]
-    fn game_changer() {
-        // @todo
+    fn relay_must_work() {
+		let hash_a: Hash = [0; 32].into();
+		let hash_b: Hash = [1; 32].into();
+
+		let peer_a = PeerId::random();
+        let peer_b = PeerId::random();
+
+        let input = msg_sequence!(BitfieldDistributionMessage =>
+            NetworkBridgeUpdate(OurViewChange::
+            NetworkBridgeUpdate(PeerConnected(peer_b, ObservedRole::Full)),
+            DistributeBitfield(hash_b, ),
+        );
+
+        let pool = sp_core::testing::SpawnBlockingExecutor::new();
+		let (mut ctx, mut handle) = subsystem_test::make_subsystem_context(pool);
+		let mut descriptor = CandidateDescriptor::default();
+		descriptor.pov_hash = pov_hash;
+
+		executor::block_on(async move {
+
+
+        });
     }
 }
