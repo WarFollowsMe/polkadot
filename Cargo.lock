@@ -4934,6 +4934,7 @@ dependencies = [
  "sc-keystore",
  "sc-network",
  "sc-service",
+ "sc-service-types",
  "sc-telemetry",
  "sc-transaction-pool",
  "serde",

@@ -38,6 +38,7 @@ grandpa = { package = "sc-finality-grandpa", git = "https://github.com/paritytec
 grandpa_primitives = { package = "sp-finality-grandpa", git = "https://github.com/paritytech/substrate", branch = "ashley-remove-service-builder" }
 inherents = { package = "sp-inherents", git = "https://github.com/paritytech/substrate", branch = "ashley-remove-service-builder" }
 service = { package = "sc-service", git = "https://github.com/paritytech/substrate", branch = "ashley-remove-service-builder", default-features = false }
+service-types = { package = "sc-service-types", git = "https://github.com/paritytech/substrate", branch = "ashley-remove-service-builder" }
 telemetry = { package = "sc-telemetry", git = "https://github.com/paritytech/substrate", branch = "ashley-remove-service-builder" }
 sc-block-builder = { git = "https://github.com/paritytech/substrate", branch = "ashley-remove-service-builder" }
 sc-transaction-pool = { git = "https://github.com/paritytech/substrate", branch = "ashley-remove-service-builder" }
